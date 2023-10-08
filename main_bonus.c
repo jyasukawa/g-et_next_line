@@ -58,4 +58,4 @@ int main()
   return 0;
 }
 
-// cc -D BUFFER_SIZE=100 main3.c get_next_line_bonus.c  get_next_line_utils_bonus.c 
+// cc -Wall -Wextra -Werror -D BUFFER_SIZE=10 main_bonus.c get_next_line_bonus.c  get_next_line_utils_bonus.c 

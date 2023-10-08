@@ -106,6 +106,7 @@ char	*get_next_line(int fd)
 }
 
 // ＜メモ＞
+// return (NULL);でいいところも、あえてreturn (ft_error_found(buffer, is_error))とすることで、ファイル読み込みが終了した場合のNULLと差別化
 // Joinで改行まで、やjoinのなかで初期化、などのやり方もとうぜんあるが、関数を機能ごとにわけて一つの関数に一つの機能
 // nextlineのfreeは使い手次第
 
