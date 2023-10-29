@@ -57,7 +57,7 @@ static char	*ft_clip_line(char *buffer, int *is_error)
 	return (str);
 }
 
-static char	*ft_save_remainder(char *buffer, int *is_error)
+static char	*ft_save_remainder(char *buffer, int *is_error, char *nextline)
 {
 	size_t	i;
 	size_t	j;
@@ -74,11 +74,13 @@ static char	*ft_save_remainder(char *buffer, int *is_error)
 	}
 	str = (char *)malloc(sizeof(char) * (ft_strlen(buffer) - i));
 	if (str == NULL)
+	{
+		free(nextline);
 		return (ft_error_found(buffer, is_error));
-	i++;
+	}
 	j = 0;
-	while (buffer[i])
-		str[j++] = buffer[i++];
+	while (buffer[++i])
+		str[j++] = buffer[i];
 	str[j] = '\0';
 	free(buffer);
 	return (str);
@@ -99,7 +101,7 @@ char	*get_next_line(int fd)
 	nextline = ft_clip_line(buffer[fd], &is_error);
 	if (is_error == YES)
 		return (NULL);
-	buffer[fd] = ft_save_remainder(buffer[fd], &is_error);
+	buffer[fd] = ft_save_remainder(buffer[fd], &is_error, nextline);
 	if (is_error == YES)
 		return (NULL);
 	return (nextline);
